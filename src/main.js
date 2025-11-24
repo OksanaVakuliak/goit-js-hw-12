@@ -21,6 +21,7 @@ let query = '';
 let loadedCount = 0;
 let page = 1;
 let totalHits = 0;
+let isEnd = false;
 
 const onFormSubmit = async event => {
   event.preventDefault();
@@ -66,9 +67,17 @@ const onFormSubmit = async event => {
     }
 
     createGallery(hits);
-    if (loadedCount < totalHits) {
+    isEnd = loadedCount >= totalHits;
+    if (!isEnd) {
       showLoadMoreBtn();
     } else {
+      iziToast.error({
+        iconUrl: iconPath,
+        message: 'We`re sorry, but you`ve reached the end of search results.',
+        messageColor: '#fafafb',
+        backgroundColor: '#ef4040',
+        position: 'topRight',
+      });
       hideLoadMoreBtn();
     }
   } catch (error) {
@@ -102,11 +111,11 @@ const onLoadMoreBtn = async () => {
     createGallery(hits);
 
     loadedCount += hits.length;
+    isEnd = loadedCount >= totalHits;
 
-    if (loadedCount < totalHits) {
+    if (!isEnd) {
       showLoadMoreBtn();
     } else {
-      hideLoadMoreBtn();
       iziToast.error({
         iconUrl: iconPath,
         message: 'We`re sorry, but you`ve reached the end of search results.',
@@ -114,6 +123,7 @@ const onLoadMoreBtn = async () => {
         backgroundColor: '#ef4040',
         position: 'topRight',
       });
+      hideLoadMoreBtn();
     }
 
     smoothScroll();
