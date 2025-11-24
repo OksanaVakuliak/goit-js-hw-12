@@ -47,11 +47,35 @@
 .form button:hover {
   background-color: #6c8cff;
 }
+.load-btn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 42px;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 125px;
+  height: 40px;
+  background-color: #4e75ff;
+  outline: none;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #fff;
+  transition: background-color linear 250ms;
+}
+.load-btn:hover {
+  background-color: #6c8cff;
+}
 .gallery {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 24px;
+  margin-bottom: 32px;
 }
 .gallery .gallery-item {
   width: 360px;
@@ -107,4 +131,7 @@
 .iziToast > .iziToast-close {
   background: url(../img/iziToste-close.svg) no-repeat 50% 50%;
   transition: all linear 250 ms;
+}
+.is-hidden {
+  display: none;
 }

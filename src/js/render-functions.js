@@ -2,8 +2,8 @@ import SimpleLightbox from 'simplelightbox';
 
 const refs = {
   galleryList: document.querySelector('.gallery'),
-  form: document.querySelector('.form'),
   loader: document.querySelector('.loader'),
+  loadMoreBtn: document.querySelector('.load-btn'),
 };
 
 const lightbox = new SimpleLightbox('.gallery a', {
@@ -50,4 +50,17 @@ export const hideLoader = () => {
 };
 export const showLoader = () => {
   refs.loader.classList.remove('is-hidden');
+};
+export const hideLoadMoreBtn = () => {
+  refs.loadMoreBtn.classList.add('is-hidden');
+};
+export const showLoadMoreBtn = () => {
+  refs.loadMoreBtn.classList.remove('is-hidden');
+};
+export const smoothScroll = () => {
+  const cardImg = document.querySelector('.gallery-item');
+  if (!cardImg) return;
+
+  const { height } = cardImg.getBoundingClientRect();
+  window.scrollBy({ top: height * 2, behavior: 'smooth' });
 };
